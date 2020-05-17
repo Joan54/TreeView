@@ -45,6 +45,8 @@ namespace TreeView
     [ UsedImplicitly ]
     public class MainViewModel : ViewModelBase
     {
+        private ObservableCollection< Model > _vmModels;
+
         #region Constructors and Destructors
 
         public MainViewModel()
@@ -106,7 +108,11 @@ namespace TreeView
 
         #region Public properties
 
-        public ObservableCollection< Model > VmModels { get; set; }
+        public ObservableCollection< Model > VmModels
+        {
+            get => _vmModels;
+            set => Set(ref _vmModels, value);
+        }
 
         #endregion
 

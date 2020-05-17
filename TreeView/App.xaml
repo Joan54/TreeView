@@ -6,8 +6,8 @@
     xmlns:d1P1="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:TreeView"
     d1P1:Ignorable="d"
-    Startup="Application_Startup"
     Exit="Application_Exit"
+    Startup="Application_Startup"
     StartupUri="MainWindow.xaml">
 
     <Application.Resources>

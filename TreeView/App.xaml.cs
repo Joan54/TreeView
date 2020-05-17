@@ -11,7 +11,6 @@
     /// </summary>
     public partial class App
     {
-        
         [ PublicAPI ]
         internal static readonly ILogExtended Logger = new NLogLogger( typeof( App ).Namespace );
 

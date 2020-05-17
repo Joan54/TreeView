@@ -38,7 +38,6 @@ namespace TreeView
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
 
     public static class DirInfo
     {
@@ -47,16 +46,22 @@ namespace TreeView
 
         public static IEnumerable< HierarchicalItem > SearchDirectory( DirectoryInfo directory, int deep = 0, int parentId = 0 )
         {
+            App.Logger.Trace( $"dir item: {directory.Name}" );
+
             yield return new HierarchicalItem( directory.Name, deep, parentId );
 
-            var arrSubs = directory.GetDirectories().ToArray();
+            var arrSubs = directory.GetDirectories();
 
             Array.Sort(arrSubs, ( x, y ) => StrCmpLogicalW( x.Name, y.Name ) );
 
             foreach ( var subdirectory in arrSubs )
             {
+                App.Logger.Trace( $"subdirectory: {subdirectory}" );
+
                 foreach ( var item in SearchDirectory( subdirectory, deep + 1 , parentId++ ))
                 {
+                    App.Logger.Trace( $"subitem: {item.Name},{item.Depth},{item.ParentId}" );
+
                     yield return item;
                 }
             }
@@ -67,6 +72,8 @@ namespace TreeView
 
             foreach ( var file in arrFi)
             {
+                App.Logger.Trace( $"file: {file}" );
+
                 yield return new HierarchicalItem( file.Name, deep + 1, parentId );
             }
         }
